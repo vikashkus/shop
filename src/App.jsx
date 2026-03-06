@@ -199,7 +199,7 @@ export default function App() {
         <div onClick={() => setPage("home")} style={{ display: "flex", alignItems: "center", gap: 11, cursor: "pointer" }}>
           <div style={{ width: 40, height: 40, background: "linear-gradient(135deg,#d4500a,#f59e0b)", borderRadius: 13, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 21, boxShadow: "0 3px 12px rgba(212,80,10,.35)" }}>🛒</div>
           <div>
-            <div className="syne" style={{ fontWeight: 800, fontSize: 15.5, lineHeight: 1.1, color: "#1c1008", letterSpacing: -.2 }}>Bansi General Store</div>
+            <div className="brand" style={{ fontWeight: 800, fontSize: 17, lineHeight: 1.1, color: "#1c1008", letterSpacing: -.2 }}>Bansi General Store</div>
             <div style={{ fontSize: 10.5, color: "#a07850", display: "flex", alignItems: "center", gap: 4, marginTop: 1 }}>
               <span>📍</span><span>Shekhpur, UP</span>
               <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#22c55e", display: "inline-block", marginLeft: 3 }} />
@@ -241,7 +241,7 @@ export default function App() {
                 <div className="fade-up" style={{ display: "inline-flex", alignItems: "center", gap: 5, background: "white", borderRadius: 50, padding: "5px 13px", marginBottom: 13, fontSize: 11.5, fontWeight: 700, color: "#a07850", boxShadow: "0 2px 8px rgba(0,0,0,.07)", animationDelay: ".05s" }}>
                   ⭐ 4.8 &nbsp;·&nbsp; Aapki Apni Dukan
                 </div>
-                <h1 className="fade-up syne hero-title" style={{ fontWeight: 800, lineHeight: 1.18, marginBottom: 9, color: "#1c1008", animationDelay: ".1s" }}>
+                <h1 className="fade-up brand hero-title" style={{ fontWeight: 900, lineHeight: 1.1, marginBottom: 10, color: "#1c1008", animationDelay: ".1s", fontSize: "clamp(32px, 8vw, 42px)" }}>
                   Sab Kuch<br /><span style={{ background: "linear-gradient(135deg,#d4500a,#f59e0b)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Ek Jagah!</span>
                 </h1>
                 <p className="fade-up" style={{ fontSize: 13, color: "#8a5c38", lineHeight: 1.55, marginBottom: 18, animationDelay: ".15s" }}>
