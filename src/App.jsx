@@ -18,8 +18,8 @@ const INITIAL_PRODUCTS = [
   { id: 12, category: "Soap & Care", name: "Colgate Toothpaste", price: 85, unit: "200g", emoji: "🦷", tag: "Popular", image: null },
 ];
 
-const WHATSAPP = "916307532939";
-const PHONE = "6307532939";
+const WHATSAPP = "916391845344";
+const PHONE = "6391845344";
 const ADMIN_USER = "bansi";
 const ADMIN_PASS = "bansi123";
 const EMOJIS = ["🌾", "🍚", "🫘", "🟡", "🧈", "🥛", "🍿", "🍪", "🍵", "💧", "🧼", "🦷", "🧃", "🥫", "🍬", "🧂", "🫙", "🛢️", "🧴", "🪥", "🧻", "🧹", "🥜", "🌽", "🧅", "🧄", "🍫", "☕", "🥚", "🍞", "🥩", "🐟", "🍋", "🍎", "🍌", "🍅", "🥕", "🧺", "📦", "🍊", "🍇"];
@@ -686,23 +686,72 @@ export default function App() {
       {showAdminLogin && (
         <>
           <div className="overlay" onClick={() => setShowAdminLogin(false)} />
-          <div className="sheet slide-in">
-            <div style={{ width: 40, height: 4, background: "#e8d9cb", borderRadius: 2, margin: "16px auto 18px" }} />
-            <div style={{ textAlign: "center", marginBottom: 20 }}>
-              <div style={{ fontSize: 50, filter: "drop-shadow(0 4px 10px rgba(212,80,10,.25))" }}>🔐</div>
-              <div className="syne" style={{ fontSize: 21, fontWeight: 800, marginTop: 10, color: "#1c1008" }}>Admin Login</div>
-              <div style={{ fontSize: 13, color: "#a07850", marginTop: 4, fontWeight: 600 }}>Sirf store owner ke liye</div>
+
+          {/* Full-screen drawer — no keyboard cut-off issues */}
+          <div className="drawer slide-in" style={{ background: "#fdf8f3", overflowY: "auto" }}>
+
+            {/* Top bar */}
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "16px 18px", borderBottom: "1px solid #f0e4d6", background: "white", flexShrink: 0 }}>
+              <div className="syne" style={{ fontSize: 17, fontWeight: 800, color: "#1c1008" }}>🔐 Admin Login</div>
+              <button onClick={() => setShowAdminLogin(false)} style={{ background: "#f5ede4", border: "none", width: 36, height: 36, borderRadius: "50%", cursor: "pointer", fontSize: 15, display: "flex", alignItems: "center", justifyContent: "center", color: "#6b3a1f" }}>✕</button>
             </div>
-            <div style={{ marginBottom: 12 }}>
-              <label style={{ fontSize: 12, fontWeight: 700, color: "#a07850", marginBottom: 6, display: "block" }}>Username</label>
-              <input placeholder="Username daalen" value={adminUser} onChange={e => setAdminUser(e.target.value)} />
+
+            {/* Content — scrollable */}
+            <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", padding: "32px 22px", maxWidth: 400, width: "100%", margin: "0 auto" }}>
+
+              {/* Icon */}
+              <div style={{ textAlign: "center", marginBottom: 32 }}>
+                <div style={{
+                  width: 88, height: 88, borderRadius: "50%", margin: "0 auto 16px",
+                  background: "linear-gradient(135deg, #d4500a, #f59e0b)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  fontSize: 38, boxShadow: "0 10px 28px rgba(212,80,10,.32)"
+                }}>🔐</div>
+                <div className="syne" style={{ fontSize: 26, fontWeight: 800, color: "#1c1008" }}>Admin Login</div>
+                <div style={{ fontSize: 13, color: "#a07850", marginTop: 6, fontWeight: 600 }}>Sirf store owner ke liye</div>
+              </div>
+
+              {/* Username */}
+              <div style={{ marginBottom: 16 }}>
+                <label style={{ fontSize: 13, fontWeight: 700, color: "#6b3a1f", marginBottom: 8, display: "block" }}>👤 Username</label>
+                <input
+                  placeholder="Username daalen"
+                  value={adminUser}
+                  onChange={e => setAdminUser(e.target.value)}
+                  autoComplete="username"
+                />
+              </div>
+
+              {/* Password */}
+              <div style={{ marginBottom: 18 }}>
+                <label style={{ fontSize: 13, fontWeight: 700, color: "#6b3a1f", marginBottom: 8, display: "block" }}>🔒 Password</label>
+                <input
+                  type="password"
+                  placeholder="Password daalen"
+                  value={adminPass}
+                  onChange={e => setAdminPass(e.target.value)}
+                  onKeyDown={e => e.key === "Enter" && handleAdminLogin()}
+                  autoComplete="current-password"
+                />
+              </div>
+
+              {/* Error */}
+              {loginError && (
+                <div style={{ background: "#fee2e2", color: "#dc2626", borderRadius: 13, padding: "13px 15px", fontSize: 14, fontWeight: 700, marginBottom: 16, display: "flex", alignItems: "center", gap: 8 }}>
+                  ❌ {loginError}
+                </div>
+              )}
+
+              {/* Login */}
+              <button className="btn-fire" style={{ fontSize: 16, padding: "16px", borderRadius: 16, marginBottom: 12 }} onClick={handleAdminLogin}>
+                🔓 Login Karein
+              </button>
+
+              {/* Cancel */}
+              <button className="btn-ghost" onClick={() => setShowAdminLogin(false)} style={{ width: "100%", padding: "13px", fontSize: 14, borderRadius: 14, textAlign: "center" }}>
+                ← Wapas Jaao
+              </button>
             </div>
-            <div style={{ marginBottom: 10 }}>
-              <label style={{ fontSize: 12, fontWeight: 700, color: "#a07850", marginBottom: 6, display: "block" }}>Password</label>
-              <input type="password" placeholder="Password daalen" value={adminPass} onChange={e => setAdminPass(e.target.value)} onKeyDown={e => e.key === "Enter" && handleAdminLogin()} />
-            </div>
-            {loginError && <div style={{ background: "#fee2e2", color: "#dc2626", borderRadius: 12, padding: "10px 14px", fontSize: 13, fontWeight: 700, marginBottom: 12, display: "flex", alignItems: "center", gap: 8 }}>❌ {loginError}</div>}
-            <button className="btn-fire" style={{ padding: "15px", fontSize: 15, borderRadius: 16, marginTop: 6 }} onClick={handleAdminLogin}>Login Karein</button>
           </div>
         </>
       )}
