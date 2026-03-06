@@ -245,10 +245,12 @@ div {
   position: fixed;
   top: 0;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
   width: 100%;
   max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
   background: #fdf8f3;
   z-index: 50;
   display: flex;
@@ -259,10 +261,12 @@ div {
 .sheet {
   position: fixed;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
   width: 100%;
   max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
   background: white;
   border-radius: 26px 26px 0 0;
   z-index: 60;
