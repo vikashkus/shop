@@ -377,39 +377,65 @@ export default function App() {
 
       {/* ════════════════════ CONTACT ════════════════════ */}
       {page === "contact" && (
-        <div className="pg" style={{ padding: "16px" }}>
-          <div className="syne" style={{ fontSize: 21, fontWeight: 800, marginBottom: 16, color: "#1c1008" }}>📞 Sampark Karein</div>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 14 }}>
-            <button onClick={() => window.open(`tel:${PHONE}`)} style={{ background: "linear-gradient(135deg,#d4500a,#f59e0b)", color: "white", border: "none", borderRadius: 18, padding: "18px 10px", cursor: "pointer", textAlign: "center", fontFamily: "inherit", boxShadow: "0 6px 20px rgba(212,80,10,.35)" }}>
-              <div style={{ fontSize: 30, marginBottom: 6 }}>📞</div>
-              <div style={{ fontWeight: 800, fontSize: 13 }}>Call Karein</div>
-              <div style={{ fontSize: 10.5, opacity: .85, marginTop: 2 }}>+91 {PHONE}</div>
+        <div className="pg" style={{ padding: "0 16px 32px" }}>
+
+          {/* Title Area */}
+          <div style={{ padding: "24px 0 20px" }}>
+            <div className="brand" style={{ fontSize: 26, fontWeight: 900, color: "#1c1008", marginBottom: 6 }}>📞 Sampark Karein</div>
+            <div style={{ fontSize: 13, color: "#a07850", fontWeight: 600 }}>Humse baat karein ya shop par aayein</div>
+          </div>
+
+          {/* Quick Contact Buttons */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 16 }}>
+            <button onClick={() => window.open(`tel:${PHONE}`)} style={{ background: "white", border: "2px solid #f0e4d6", borderRadius: 20, padding: "22px 12px", cursor: "pointer", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: 8, boxShadow: "0 4px 12px rgba(28,16,8,.04)" }}>
+              <div style={{
+                width: 52, height: 52, borderRadius: "50%", background: "linear-gradient(135deg,#d4500a,#f59e0b)",
+                display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24, color: "white",
+                boxShadow: "0 4px 12px rgba(212,80,10,.25)"
+              }}>📞</div>
+              <div style={{ fontWeight: 800, fontSize: 14, color: "#1c1008" }}>Call Karein</div>
+              <div style={{ fontSize: 11, color: "#a07850", fontWeight: 600 }}>+91 {PHONE}</div>
             </button>
-            <button onClick={() => window.open(`https://wa.me/${WHATSAPP}`, "_blank")} style={{ background: "linear-gradient(135deg,#16a34a,#22c55e)", color: "white", border: "none", borderRadius: 18, padding: "18px 10px", cursor: "pointer", textAlign: "center", fontFamily: "inherit", boxShadow: "0 6px 20px rgba(22,163,74,.3)" }}>
-              <div style={{ fontSize: 30, marginBottom: 6 }}>💬</div>
-              <div style={{ fontWeight: 800, fontSize: 13 }}>WhatsApp</div>
-              <div style={{ fontSize: 10.5, opacity: .85, marginTop: 2 }}>Order bhejein</div>
+            <button onClick={() => window.open(`https://wa.me/${WHATSAPP}`, "_blank")} style={{ background: "white", border: "2px solid #f0e4d6", borderRadius: 20, padding: "22px 12px", cursor: "pointer", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: 8, boxShadow: "0 4px 12px rgba(28,16,8,.04)" }}>
+              <div style={{
+                width: 52, height: 52, borderRadius: "50%", background: "linear-gradient(135deg,#16a34a,#22c55e)",
+                display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24, color: "white",
+                boxShadow: "0 4px 12px rgba(22,163,74,.25)"
+              }}>💬</div>
+              <div style={{ fontWeight: 800, fontSize: 14, color: "#1c1008" }}>WhatsApp</div>
+              <div style={{ fontSize: 11, color: "#a07850", fontWeight: 600 }}>Message bhejein</div>
             </button>
           </div>
-          <div className="card" style={{ marginBottom: 14 }}>
+
+          {/* Contact Details Card */}
+          <div className="card" style={{ marginBottom: 16, border: "2px solid #f0e4d6", padding: "18px" }}>
             {[
               { icon: "📍", t: "Hamara Pata", s: "Shekhpur, Uttar Pradesh · PIN 233300" },
               { icon: "⏰", t: "Kholne ka Samay", s: "Mon–Sat 7am–10pm · Sun 8am–9pm" },
               { icon: "🚚", t: "Home Delivery", s: "Nearby area mein available" },
             ].map((x, i) => (
-              <div key={x.t} style={{ display: "flex", gap: 13, alignItems: "flex-start", paddingBottom: i < 2 ? 13 : 0, marginBottom: i < 2 ? 13 : 0, borderBottom: i < 2 ? "1px solid #f0e4d6" : "none" }}>
-                <div style={{ fontSize: 24 }}>{x.icon}</div>
+              <div key={x.t} style={{ display: "flex", gap: 15, alignItems: "flex-start", paddingBottom: i < 2 ? 16 : 0, marginBottom: i < 2 ? 16 : 0, borderBottom: i < 2 ? "1.5px solid #f5ede4" : "none" }}>
+                <div style={{ width: 42, height: 42, background: "#fdf8f3", borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20, flexShrink: 0 }}>{x.icon}</div>
                 <div>
-                  <div style={{ fontWeight: 800, fontSize: 13.5, marginBottom: 2, color: "#1c1008" }}>{x.t}</div>
-                  <div style={{ fontSize: 12.5, color: "#a07850" }}>{x.s}</div>
+                  <div style={{ fontWeight: 800, fontSize: 14, marginBottom: 3, color: "#1c1008" }}>{x.t}</div>
+                  <div style={{ fontSize: 13, color: "#a07850", fontWeight: 600, lineHeight: 1.4 }}>{x.s}</div>
                 </div>
               </div>
             ))}
           </div>
-          <div style={{ borderRadius: 20, overflow: "hidden", marginBottom: 12, boxShadow: "0 6px 20px rgba(28,16,8,.12)" }}>
-            <iframe title="Location" src="https://www.google.com/maps?q=25.670984,83.547116&z=16&output=embed" width="100%" height="215" style={{ border: 0, display: "block" }} allowFullScreen loading="lazy" />
+
+          {/* Location Map Section */}
+          <div style={{ background: "white", border: "2px solid #f0e4d6", borderRadius: 24, padding: "8px", position: "relative", marginBottom: 16 }}>
+            <div style={{ borderRadius: 18, overflow: "hidden", height: 215 }}>
+              <iframe title="Location" src="https://www.google.com/maps?q=25.670984,83.547116&z=16&output=embed" width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy" />
+            </div>
+            <div style={{ padding: "14px 8px 6px" }}>
+              <button className="btn-out" onClick={() => window.open("https://www.google.com/maps?q=25.670984,83.547116", "_blank")} style={{ width: "100%", borderRadius: 14, fontSize: 14, padding: "12px", border: "2px solid #e8d9cb", fontWeight: 800 }}>
+                🗺️ Google Maps pe Dekho
+              </button>
+            </div>
           </div>
-          <button className="btn-out" onClick={() => window.open("https://www.google.com/maps?q=25.670984,83.547116", "_blank")}>🗺️ Google Maps pe Dekho</button>
+
         </div>
       )}
 
