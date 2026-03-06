@@ -544,54 +544,64 @@ export default function App() {
         <>
           <div className="overlay" onClick={() => setCartOpen(false)} />
           <div className="drawer slide-in">
-            <div style={{ padding: "14px 16px", borderBottom: "1px solid #f0e4d6", display: "flex", justifyContent: "space-between", alignItems: "center", flexShrink: 0, background: "white" }}>
-              <div className="syne" style={{ fontSize: 18, fontWeight: 800, color: "#1c1008" }}>🛒 Mera Cart {totalItems > 0 && <span style={{ fontSize: 14, color: "#a07850", fontWeight: 700 }}>({totalItems})</span>}</div>
-              <button onClick={() => setCartOpen(false)} style={{ background: "#f5ede4", border: "none", width: 34, height: 34, borderRadius: "50%", cursor: "pointer", fontSize: 15, display: "flex", alignItems: "center", justifyContent: "center", color: "#6b3a1f" }}>✕</button>
+
+            {/* Header */}
+            <div style={{ padding: "16px 16px 14px", borderBottom: "1px solid #f0e4d6", display: "flex", justifyContent: "space-between", alignItems: "center", flexShrink: 0, background: "white" }}>
+              <div>
+                <div className="syne" style={{ fontSize: 19, fontWeight: 800, color: "#1c1008" }}>🛒 Mera Cart</div>
+                {totalItems > 0 && <div style={{ fontSize: 12, color: "#a07850", fontWeight: 600, marginTop: 1 }}>{totalItems} item · ₹{totalPrice} total</div>}
+              </div>
+              <button onClick={() => setCartOpen(false)} style={{ background: "#f5ede4", border: "none", width: 38, height: 38, borderRadius: "50%", cursor: "pointer", fontSize: 16, display: "flex", alignItems: "center", justifyContent: "center", color: "#6b3a1f", flexShrink: 0 }}>✕</button>
             </div>
 
-            <div style={{ flex: 1, overflowY: "auto", padding: "10px 16px", background: "#fdf8f3" }}>
+            {/* Items */}
+            <div style={{ flex: 1, overflowY: "auto", padding: "12px 14px", background: "#fdf8f3" }}>
               {cart.length === 0 ? (
-                <div style={{ textAlign: "center", paddingTop: 70, color: "#c4a98a" }}>
-                  <div style={{ fontSize: 64, filter: "grayscale(.3)" }}>🛒</div>
-                  <div style={{ fontWeight: 800, fontSize: 16, marginTop: 14, color: "#6b3a1f" }}>Cart khali hai</div>
-                  <div style={{ fontSize: 13, marginTop: 6, color: "#c4a98a" }}>Products add karein</div>
-                  <button className="btn-fire" style={{ marginTop: 22, width: "auto", padding: "11px 28px", borderRadius: 13, fontSize: 14 }} onClick={() => { setCartOpen(false); setPage("products"); }}>Products Dekhein</button>
+                <div style={{ textAlign: "center", paddingTop: 80, color: "#c4a98a" }}>
+                  <div style={{ fontSize: 60 }}>🛒</div>
+                  <div style={{ fontWeight: 800, fontSize: 17, marginTop: 14, color: "#6b3a1f" }}>Cart khali hai</div>
+                  <div style={{ fontSize: 13, marginTop: 6, color: "#c4a98a", marginBottom: 22 }}>Products add karein</div>
+                  <button className="btn-fire" style={{ width: "auto", padding: "12px 28px", borderRadius: 13, fontSize: 14 }} onClick={() => { setCartOpen(false); setPage("products"); }}>🛍️ Products Dekhein</button>
                 </div>
               ) : (
                 <>
                   {cart.map(item => (
-                    <div key={item.id} className="card" style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 10 }}>
-                      <Thumb p={item} size={52} />
+                    <div key={item.id} style={{ background: "white", borderRadius: 16, padding: "12px 14px", display: "flex", alignItems: "center", gap: 12, marginBottom: 10, boxShadow: "0 2px 10px rgba(28,16,8,.06)" }}>
+                      <Thumb p={item} size={48} />
                       <div style={{ flex: 1, minWidth: 0 }}>
-                        <div style={{ fontWeight: 800, fontSize: 13.5, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", color: "#1c1008" }}>{item.name}</div>
-                        <div style={{ fontSize: 11, color: "#c4a98a", marginTop: 1, fontWeight: 600 }}>{item.unit} · ₹{item.price} each</div>
+                        <div style={{ fontWeight: 800, fontSize: 14, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", color: "#1c1008", marginBottom: 2 }}>{item.name}</div>
+                        <div style={{ fontSize: 11.5, color: "#c4a98a", fontWeight: 600 }}>{item.unit} · ₹{item.price} each</div>
                       </div>
-                      <QtyControl item={item} small />
-                      <div style={{ textAlign: "right", flexShrink: 0 }}>
+                      <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 5, flexShrink: 0 }}>
                         <div className="syne" style={{ fontWeight: 800, fontSize: 15, background: "linear-gradient(135deg,#d4500a,#f59e0b)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>₹{item.price * item.qty}</div>
-                        <button onClick={() => removeItem(item.id)} style={{ background: "none", border: "none", color: "#dc2626", fontSize: 10.5, cursor: "pointer", marginTop: 2, padding: 0, fontWeight: 700 }}>Hatao</button>
+                        <QtyControl item={item} small />
+                        <button onClick={() => removeItem(item.id)} style={{ background: "none", border: "none", color: "#dc2626", fontSize: 11, cursor: "pointer", padding: 0, fontWeight: 700 }}>Hatao ✕</button>
                       </div>
                     </div>
                   ))}
-                  <div style={{ background: "white", borderRadius: 16, padding: "14px 16px", marginTop: 4 }}>
-                    {[["Items", `₹${totalPrice}`, false], ["Delivery", "FREE", true],].map(([l, v, g]) => (
-                      <div key={l} style={{ display: "flex", justifyContent: "space-between", fontSize: 13, marginBottom: 6, fontWeight: 600 }}>
+
+                  {/* Bill Summary */}
+                  <div style={{ background: "white", borderRadius: 16, padding: "14px 16px", marginTop: 6, boxShadow: "0 2px 10px rgba(28,16,8,.06)" }}>
+                    <div style={{ fontWeight: 800, fontSize: 13, color: "#a07850", marginBottom: 10, textTransform: "uppercase", letterSpacing: .5 }}>Bill Summary</div>
+                    {[["Items", `₹${totalPrice}`, false], ["Delivery", "FREE ✓", true]].map(([l, v, g]) => (
+                      <div key={l} style={{ display: "flex", justifyContent: "space-between", fontSize: 13.5, marginBottom: 8, fontWeight: 600 }}>
                         <span style={{ color: "#a07850" }}>{l}</span>
                         <span style={{ color: g ? "#22c55e" : "#1c1008", fontWeight: 700 }}>{v}</span>
                       </div>
                     ))}
-                    <div style={{ borderTop: "1px solid #f0e4d6", marginTop: 8, paddingTop: 10, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                    <div style={{ borderTop: "2px solid #f0e4d6", marginTop: 10, paddingTop: 12, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                       <span style={{ fontWeight: 800, fontSize: 15, color: "#1c1008" }}>Kul Total</span>
-                      <span className="syne" style={{ fontSize: 22, fontWeight: 800, background: "linear-gradient(135deg,#d4500a,#f59e0b)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>₹{totalPrice}</span>
+                      <span className="syne" style={{ fontSize: 24, fontWeight: 800, background: "linear-gradient(135deg,#d4500a,#f59e0b)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>₹{totalPrice}</span>
                     </div>
                   </div>
                 </>
               )}
             </div>
 
+            {/* Bottom Order Button */}
             {cart.length > 0 && (
-              <div style={{ padding: "12px 16px 22px", borderTop: "1px solid #f0e4d6", background: "white", flexShrink: 0 }}>
-                <button className="btn-green" style={{ fontSize: 15, padding: "15px", borderRadius: 16, display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }} onClick={() => { setCartOpen(false); setShowCheckout(true); }}>
+              <div style={{ padding: "14px 16px", paddingBottom: "max(18px, env(safe-area-inset-bottom, 18px))", borderTop: "1px solid #f0e4d6", background: "white", flexShrink: 0 }}>
+                <button className="btn-green" style={{ fontSize: 15, borderRadius: 16, display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }} onClick={() => { setCartOpen(false); setShowCheckout(true); }}>
                   📲 WhatsApp pe Order Karein
                 </button>
               </div>
